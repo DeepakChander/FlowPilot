@@ -1,15 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
-import path from 'path';
+import { createClient } from "@supabase/supabase-js";
+import dotenv from "dotenv";
 
-// Load env vars
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config();
 
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const supabaseUrl = process.env.SUPABASE_URL as string;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY as string;
 
-if (!supabaseUrl || !supabaseKey) {
-    console.warn('Supabase credentials missing in .env');
-}
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseServiceKey);
